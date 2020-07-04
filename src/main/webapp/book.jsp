@@ -24,11 +24,11 @@
 
 <p id="par"></p>
 
-<%--<%--%>
-<%--    for(String name: myList) {--%>
-<%--        out.print(name);--%>
-<%--    }--%>
-<%--%>--%>
+<%
+    for(String name: myList) {
+        out.print(name);
+    }
+%>
 
 <ol>
     <c:forEach items="${requestScope.names}" var="name">
@@ -36,8 +36,27 @@
     </c:forEach>
 </ol>
 
-parametr obecny // jesli jest parametr test=true
-nie ma parametru // jesli nie ma parametru lub nie jest true
+<c:if test="${param.test}">
+    jakas wartosc
+</c:if>
+
+<c:if test="${!param.test}">
+    nie ma paramsa
+</c:if>
+
+<br/>
+
+<c:choose>
+    <c:when test="${'v1'.equals(param.p1)}">
+        wartosc 1
+    </c:when>
+    <c:when test="${'v2'.equals(param.p1)}">
+        wartosc 2
+    </c:when>
+    <c:otherwise>
+        inna wartosc
+    </c:otherwise>
+</c:choose>
 
 <script>
     // alert('this is alert');
