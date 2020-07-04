@@ -6,5 +6,9 @@
 <html>
 <body>
 <h2>Books</h2>
+
+<jsp:useBean id="myBook" class="pl.jnowacki.Book"/>
+<jsp:setProperty name="myBook" property="*"/>
+
 </body>
 </html>
