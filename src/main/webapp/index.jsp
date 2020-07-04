@@ -1,3 +1,4 @@
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--Expression language jest włączony--%>
 <%@ page isELIgnored="false" %>
@@ -13,6 +14,10 @@
     private int add(int a, int b) {
         return a + b;
     }
+
+    private String sayHello(String name) {
+        return String.format("Hello %s!", name);
+    }
 %>
 
 <%
@@ -22,6 +27,8 @@
     if (true) {
         b = 5;
     }
+
+    LocalDateTime.now();
 
     for (int i = 0; i < 5; i++) {
 %>
@@ -40,6 +47,11 @@
 </b>
 <i><%=add(4, 10)%>
 </i>
+
+<br/>
+<%=sayHello("Jedrzej")%>
+<br/>
+<%=LocalDateTime.now()%>
 
 </body>
 </html>
