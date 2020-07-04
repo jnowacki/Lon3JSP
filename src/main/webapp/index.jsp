@@ -52,6 +52,36 @@
 <%=sayHello("Jedrzej")%>
 <br/>
 <%=LocalDateTime.now()%>
+<br/>
 
+<%
+    int start = Integer.parseInt(request.getParameter("start"));
+    int end = Integer.parseInt(request.getParameter("end"));
+
+    for (int i = start; i <= end; i++) {
+        out.print(i);
+    }
+
+    Cookie cookie = new Cookie("myLon3Cookie", request.getParameter("name"));
+
+    response.addCookie(cookie);
+%>
+
+<%--komentarz jsp--%>
+<!--html komentarz-->
+
+<br/>
+<jsp:useBean id="myPerson" class="pl.jnowacki.Person"/>
+
+<jsp:setProperty name="myPerson" property="*"/>
+
+<%=myPerson.getMyName()%>
+<%=myPerson.getPwd()%>
+<br/>
+
+${myPerson.myName}
+${myPerson.pwd}
+
+${param.end}
 </body>
 </html>
