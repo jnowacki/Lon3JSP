@@ -1,6 +1,5 @@
 package pl.jnowacki.servlet;
 
-import org.apache.commons.lang3.StringUtils;
 import pl.jnowacki.Album;
 
 import javax.servlet.ServletException;
@@ -12,11 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/albumServlet")
+@WebServlet(value = "/albumServlet", name = "Album")
 public class AlbumsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println("hello from servlet");
 
         if (req.getSession().getAttribute("albums") == null) {
             req.getSession().setAttribute("albums", new ArrayList<Album>());
