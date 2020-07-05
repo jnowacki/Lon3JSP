@@ -51,15 +51,18 @@
 
 <table>
     <tr>
+        <th>Lp.</th>
         <th>Name</th>
         <th>Author</th>
         <th>Year</th>
     </tr>
 
-    <c:forEach items="${sessionScope.albums}" var="album">
+    <c:forEach items="${sessionScope.albums}" var="album" varStatus="status">
         <tr>
-            <td>${}</td>
-            <td>2</td>
+            <td>${status.count}</td>
+            <td>${album.name}</td>
+            <td>${album.author}</td>
+            <td>${album.year}</td>
         </tr>
     </c:forEach>
 
