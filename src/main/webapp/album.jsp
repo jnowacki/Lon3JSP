@@ -12,6 +12,12 @@
     table, td, th{
         border: solid 1px black;
     }
+
+    .label {
+        display: inline-block;
+        width: 50px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <head>
@@ -36,18 +42,25 @@
     <label for="year" class="label">Year:</label>
     <input type="text" id="year" name="year"><br/>
 
+    <input type="hidden" name="sent" value="true">
+
     <input type="submit" value="OK">
 </form>
 
 <jsp:useBean id="album" class="pl.jnowacki.Album"/>
 <jsp:setProperty name="album" property="*"/>
 
-<c:if test="${album.valid}">
-    <%
-        List<Album> albums = (List<Album>) session.getAttribute("albums");
-        albums.add(album);
-    %>
-</c:if>
+<c:choose>
+    <c:when test="${album.valid}">
+        <%
+            List<Album> albums = (List<Album>) session.getAttribute("albums");
+            albums.add(album);
+        %>
+    </c:when>
+    <c:otherwise>
+        <h3>Dane niepoprawne!</h3>
+    </c:otherwise>
+</c:choose>
 
 <table>
     <tr>
