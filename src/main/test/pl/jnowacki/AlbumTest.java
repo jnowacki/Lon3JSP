@@ -17,14 +17,14 @@ public class AlbumTest {
     @Test
     public void shouldBeInvalidWhenSomeFieldsAreEmpty() {
 
-//        assertTrue();
-//        assertFalse();
+        Album album = new Album("name", "   ", "year");
+        assertFalse(album.isValid());
     }
 
     @Test
     public void shouldBeInvalidWhenSomeFieldsAreNull() {
 
-//        assertTrue();
-//        assertFalse();
+        Album album = new Album(null, "author", "year");
+        assertFalse(album.isValid());
     }
 }
