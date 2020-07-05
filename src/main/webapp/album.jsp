@@ -8,6 +8,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
+<style>
+    table, td, th{
+        border: solid 1px black;
+    }
+</style>
+
 <head>
     <title>Album</title>
 </head>
@@ -36,12 +42,25 @@
 <jsp:useBean id="album" class="pl.jnowacki.Album"/>
 <jsp:setProperty name="album" property="*"/>
 
-<%
-    List<Album> albums = (List<Album>) session.getAttribute("albums");
-    albums.add(album);
-%>
+<c:if test="${album.valid}">
+    <%
+        List<Album> albums = (List<Album>) session.getAttribute("albums");
+        albums.add(album);
+    %>
+</c:if>
 
-${album.valid}
+${sessionScope.albums}
+
+<table>
+    <tr>
+        <th>a</th>
+        <th>a</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+</table>
 
 </body>
 </html>
