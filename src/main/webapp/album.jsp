@@ -1,6 +1,7 @@
 <%@ page import="pl.jnowacki.Album" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--Expression language jest włączony--%>
 <%@ page isELIgnored="false" %>
@@ -17,6 +18,14 @@
         display: inline-block;
         width: 50px;
         margin-bottom: 10px;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .startsWithA {
+        background-color: red;
     }
 </style>
 
@@ -59,29 +68,35 @@
             %>
         </c:when>
         <c:otherwise>
-            <h3>Dane niepoprawne!</h3>
+            <h3 class="error">Dane niepoprawne!</h3>
         </c:otherwise>
     </c:choose>
 </c:if>
 
-<table>
-    <tr>
-        <th>Lp.</th>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Year</th>
-    </tr>
+<c:choose>
+    <c:when test="${sessionScope.albums != null && sessionScope.albums.size() > 0}">
+        <table>
+            <tr>
+                <th>Lp.</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Year</th>
+            </tr>
 
-    <c:forEach items="${sessionScope.albums}" var="album" varStatus="status">
-        <tr>
-            <td>${status.count}</td>
-            <td>${album.name}</td>
-            <td>${album.author}</td>
-            <td>${album.year}</td>
-        </tr>
-    </c:forEach>
+            <c:forEach items="${sessionScope.albums}" var="album" varStatus="status">
+                <tr class="${album.name.startsWith("a") ? "startsWithA": ""}">
+                    <td>${status.count}</td>
+                    <td>${album.name}</td>
+                    <td>${album.author}</td>
+                    <td>${album.year}</td>
+                </tr>
+            </c:forEach>
 
-</table>
-
+        </table>
+    </c:when>
+    <c:otherwise>
+        <h3>Dodaj swój pierwszy album!</h3>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>
