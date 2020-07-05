@@ -41,7 +41,7 @@
     albums.add(album);
 %>
 
-${sessionScope.albums}
+${album.valid}
 
 </body>
 </html>
