@@ -13,8 +13,6 @@
 </head>
 <body>
 
-
-
 <form action="${pageContext.request.contextPath}/album.jsp" method="get">
 
     <label for="name" class="label">Name:</label>
@@ -26,7 +24,6 @@
     <label for="year" class="label">Year:</label>
     <input type="text" id="year" name="year"><br/>
 
-    <input type="hidden" name="sent" value="true">
     <input type="submit" value="OK">
 </form>
 
