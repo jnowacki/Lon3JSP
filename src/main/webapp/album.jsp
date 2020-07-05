@@ -13,6 +13,12 @@
 </head>
 <body>
 
+<%
+    if (session.getAttribute("albums") == null) {
+        session.setAttribute("albums", new ArrayList<Album>());
+    }
+%>
+
 <form action="${pageContext.request.contextPath}/album.jsp" method="get">
 
     <label for="name" class="label">Name:</label>
@@ -26,6 +32,9 @@
 
     <input type="submit" value="OK">
 </form>
+
+<jsp:useBean id="album" class="pl.jnowacki.Album"/>
+<jsp:setProperty name="album" property="*"/>
 
 
 
