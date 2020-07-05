@@ -47,20 +47,22 @@
     <input type="submit" value="OK">
 </form>
 
-<jsp:useBean id="album" class="pl.jnowacki.Album"/>
-<jsp:setProperty name="album" property="*"/>
+<c:if test="${param.sent}">
+    <jsp:useBean id="album" class="pl.jnowacki.Album"/>
+    <jsp:setProperty name="album" property="*"/>
 
-<c:choose>
-    <c:when test="${album.valid}">
-        <%
-            List<Album> albums = (List<Album>) session.getAttribute("albums");
-            albums.add(album);
-        %>
-    </c:when>
-    <c:otherwise>
-        <h3>Dane niepoprawne!</h3>
-    </c:otherwise>
-</c:choose>
+    <c:choose>
+        <c:when test="${album.valid}">
+            <%
+                List<Album> albums = (List<Album>) session.getAttribute("albums");
+                albums.add(album);
+            %>
+        </c:when>
+        <c:otherwise>
+            <h3>Dane niepoprawne!</h3>
+        </c:otherwise>
+    </c:choose>
+</c:if>
 
 <table>
     <tr>
