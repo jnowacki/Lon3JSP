@@ -44,7 +44,7 @@ public class Album implements Serializable {
     }
 
     public boolean isValid() {
-        return false;
+        return !StringUtils.isBlank(name) && !StringUtils.isBlank(author) && !StringUtils.isBlank(year);
     }
 
     @Override
