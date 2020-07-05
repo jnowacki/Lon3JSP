@@ -43,6 +43,10 @@ public class Album implements Serializable {
         this.year = year;
     }
 
+    public boolean isValid() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Album{" +

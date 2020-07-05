@@ -36,7 +36,12 @@
 <jsp:useBean id="album" class="pl.jnowacki.Album"/>
 <jsp:setProperty name="album" property="*"/>
 
+<%
+    List<Album> albums = (List<Album>) session.getAttribute("albums");
+    albums.add(album);
+%>
 
+${sessionScope.albums}
 
 </body>
 </html>
