@@ -1,7 +1,5 @@
 <%@ page import="pl.jnowacki.Album" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--Expression language jest włączony--%>
 <%@ page isELIgnored="false" %>
@@ -34,13 +32,7 @@
 </head>
 <body>
 
-<%
-    if (session.getAttribute("albums") == null) {
-        session.setAttribute("albums", new ArrayList<Album>());
-    }
-%>
-
-<form action="${pageContext.request.contextPath}/album.jsp" method="get">
+<form method="post">
 
     <label for="name" class="label">Name:</label>
     <input type="text" id="name" name="name"><br/>
@@ -51,26 +43,11 @@
     <label for="year" class="label">Year:</label>
     <input type="text" id="year" name="year"><br/>
 
-    <input type="hidden" name="sent" value="true">
-
     <input type="submit" value="OK">
 </form>
 
-<c:if test="${param.sent}">
-    <jsp:useBean id="album" class="pl.jnowacki.Album"/>
-    <jsp:setProperty name="album" property="*"/>
-
-    <c:choose>
-        <c:when test="${album.valid}">
-            <%
-                List<Album> albums = (List<Album>) session.getAttribute("albums");
-                albums.add(album);
-            %>
-        </c:when>
-        <c:otherwise>
-            <h3 class="error">Dane niepoprawne!</h3>
-        </c:otherwise>
-    </c:choose>
+<c:if test="${requestScope.hasError}">
+    <h3 class="error">Dane niepoprawne!</h3>
 </c:if>
 
 <c:choose>
