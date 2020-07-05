@@ -49,17 +49,20 @@
     %>
 </c:if>
 
-${sessionScope.albums}
-
 <table>
     <tr>
-        <th>a</th>
-        <th>a</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Year</th>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>2</td>
-    </tr>
+
+    <c:forEach items="${sessionScope.albums}" var="album">
+        <tr>
+            <td>${}</td>
+            <td>2</td>
+        </tr>
+    </c:forEach>
+
 </table>
 
 </body>
