@@ -23,7 +23,11 @@
     }
 
     .startsWithA {
-        background-color: red;
+        color: red;
+    }
+
+    .even {
+        background-color: grey;
     }
 </style>
 
@@ -43,6 +47,11 @@
     <label for="year" class="label">Year:</label>
     <input type="text" id="year" name="year"><br/>
 
+    <c:forEach items="${applicationScope.genres}" var="genre" varStatus="status">
+        <label for="${genre}">${genre}</label>
+        <input type="radio" id=${genre} name="genre" value="${genre}" ${status.last ? "checked": ""}><br/>
+    </c:forEach>
+
     <input type="submit" value="OK">
 </form>
 
@@ -58,14 +67,16 @@
                 <th>Name</th>
                 <th>Author</th>
                 <th>Year</th>
+                <th>Genre</th>
             </tr>
 
             <c:forEach items="${sessionScope.albums}" var="album" varStatus="status">
-                <tr class="${album.name.startsWith("a") ? "startsWithA": ""}">
+                <tr class="${album.name.startsWith("a") ? "startsWithA": ""} ${status.count % 2 == 0 ? "even": ""}">
                     <td>${status.count}</td>
                     <td>${album.name}</td>
                     <td>${album.author}</td>
                     <td>${album.year}</td>
+                    <td>${album.genre}</td>
                 </tr>
             </c:forEach>
 

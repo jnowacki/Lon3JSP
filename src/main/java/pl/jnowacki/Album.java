@@ -3,20 +3,23 @@ package pl.jnowacki;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Album implements Serializable {
 
     private String name;
     private String author;
-    private String year;
+    private Integer year;
+    private Album.Genre genre;
 
     public Album() {
     }
 
-    public Album(String name, String author, String year) {
+    public Album(String name, String author, Integer year, Album.Genre genre) {
         this.name = name;
         this.author = author;
         this.year = year;
+        this.genre = genre;
     }
 
     public String getName() {
@@ -35,16 +38,29 @@ public class Album implements Serializable {
         this.author = author;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     public boolean isValid() {
-        return !StringUtils.isBlank(name) && !StringUtils.isBlank(author) && !StringUtils.isBlank(year);
+        return !StringUtils.isBlank(name) &&
+                !StringUtils.isBlank(author) &&
+                genre != null &&
+                year != null &&
+                year > 1900 &&
+                year <= LocalDate.now().getYear();
     }
 
     @Override
@@ -52,7 +68,12 @@ public class Album implements Serializable {
         return "Album{" +
                 "name='" + name + '\'' +
                 ", author='" + author + '\'' +
-                ", year='" + year + '\'' +
+                ", year=" + year +
+                ", genre=" + genre +
                 '}';
+    }
+
+    public enum Genre {
+        ROCK, BLUES, COUNTRY, OTHER
     }
 }
